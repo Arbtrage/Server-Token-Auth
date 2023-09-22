@@ -11,7 +11,7 @@ const sessionSchema = new Schema<SessionDocument>(
     token: {
       type: String,
       required: true,
-    },
+    }
   },
   { timestamps: true }
 );
