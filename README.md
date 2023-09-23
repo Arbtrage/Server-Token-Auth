@@ -1,3 +1,5 @@
+![Server-Token-Auth](https://socialify.git.ci/Arbtrage/Server-Token-Auth/image?language=1&owner=1&name=1&stargazers=1&theme=Light)
+
 # Server Auth Token
 
 A comprehensive authentication system with HTTPS, Swagger documentation, user registration, login, token-based authentication, and session management.
