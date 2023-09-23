@@ -24,18 +24,18 @@ You can install this project locally by following these steps:
 git clone https://github.com/Arbtrage/Server-Token-Auth.git
 ```
 
-# Navigate to the project directory
 ```bash
+# Navigate to the project directory
 cd Server-Token-Auth
 ```
 
-# Install server dependencies
 ```bash
+# Install server dependencies
 npm install
 ```
 
-## Run Locally
 ```bash
+## Run Locally
 npm run dev
 ```
 
