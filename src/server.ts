@@ -1,4 +1,6 @@
 import express, { Express } from "express";
+import https from "https";
+import fs from "fs";
 import * as dotenv from "dotenv";
 import { morganMiddleware } from "./middleware";
 import { mongoose } from "./utils/index";
@@ -15,24 +17,20 @@ app.disable("x-powered-by");
 
 setupRoutes(app);
 
-const port = process.env.PORT || 3000;
+const options = {
+  key: fs.readFileSync("key.pem"),
+  cert: fs.readFileSync("cert.pem"),
+};
 
-app.get("/api/v1/test", (_, res) => {
-  Logger.error("This is an error log");
-  Logger.warn("This is a warn log");
-  Logger.info("This is a info log");
-  Logger.http("This is a http log");
-  Logger.debug("This is a debug log");
-  res.send("Hello world");
-});
+const port = process.env.PORT || 3000;
 
 mongoose
   .run()
   .then(() => {
     try {
-      app.listen(port, () => {
-        Logger.info(`Server running on port : ${port}`);
-      });
+      https
+        .createServer(options, app)
+        .listen(port, ()=>Logger.info(`server runs on port ${port}`));
     } catch (error) {
       Logger.error(error.message);
     }
