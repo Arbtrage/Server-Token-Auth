@@ -6,6 +6,7 @@ import { morganMiddleware } from "./middleware";
 import { mongoose } from "./utils/index";
 import Logger from "./lib/logger";
 import { setupRoutes } from "./routes/index";
+import swaggerConfig from '../src/swagger';
 dotenv.config();
 
 const app: Express = express();
@@ -17,13 +18,14 @@ app.disable("x-powered-by");
 
 setupRoutes(app);
 
+
 const options = {
   key: fs.readFileSync("key.pem"),
   cert: fs.readFileSync("cert.pem"),
 };
 
 const port = process.env.PORT || 3000;
-
+swaggerConfig(app);
 mongoose
   .run()
   .then(() => {
@@ -38,3 +40,5 @@ mongoose
   .catch((error) => {
     Logger.error(error.message);
   });
+
+export default app;
